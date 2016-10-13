@@ -3,13 +3,13 @@ def division(fiveCount, number):
     of the number that is inputted.
     The first argument should be an integer and the second should be a float.
     '''
-    #checks for base case
+    #checks for base case.
     if number > 0 and number < 1:
         return fiveCount
     else:
         #calculates the float number of trailing 0s
         hold = fiveCount + number/5
-        #turns it into an integer to round down
+        #turns it into an integer to round down.
         fiveCount = int(hold)
         #calls the function again to keep it going till the base case hits.
         return division(fiveCount, number/5) 

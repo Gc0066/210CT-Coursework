@@ -15,9 +15,9 @@ boolValue = False
 
 #
 for i in usuableList:
-    #sets boolean value to false for every new number
+    #sets boolean value to false for every new number.
     boolValue = False
-    #generates random number
+    #generates random number.
     number = randint(0, len(usuableList)-1)
     while boolValue == False:
         #if the number generated has not been geenrated before
