@@ -20,22 +20,22 @@ days = int(input("Number Of days the aliens are invading"))
 numberHatched = 0
 
 #loops through from first day to last day inputted
-for i in range(0,days):
-    #ignores first value as has already been done before loop, could start from 1 in the loop instead of 0
-    #to get rid of statement.
-    if i != 0:
+for i in range(1,days):
+    ##ignores first value as has already been done before loop, could start from 1 in the loop instead of 0
+    ##to get rid of statement.
+   # if i != 0:
         #if it has been five days, hatch the aliens and add them to number of aliens.
-        if i-numberOfDaysPerHatch >=0:
-            numberHatched = numberOfEggs[i-numberOfDaysPerHatch]
+    if i-numberOfDaysPerHatch >=0:
+        numberHatched = numberOfEggs[i-numberOfDaysPerHatch]
             
-            numberOfAliens.append(numberOfAliens[i-1] + numberHatched)
+        numberOfAliens.append(numberOfAliens[i-1] + numberHatched)
 
-        else:
-            #if it hasnt been five days then add a new item that is the amount of aliens to signify the
-            #amount of aliens that are there everyday.
-            numberOfAliens.append(numberOfAliens[i-1])
+    else:
+        #if it hasnt been five days then add a new item that is the amount of aliens to signify the
+        #amount of aliens that are there everyday.
+        numberOfAliens.append(numberOfAliens[i-1])
         #calculates amount of eggs laid that day.
-        numberOfEggs.append(numberOfAliens[i] * numberOfEggsLaid)
-
+    numberOfEggs.append(numberOfAliens[i] * numberOfEggsLaid)
+print(numberOfAliens)
 #print the last day of aliens.
 print(numberOfAliens[len(numberOfAliens)-1], "Aliens")

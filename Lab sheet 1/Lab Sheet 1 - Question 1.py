@@ -25,21 +25,35 @@ def shuffle(usuableList, number, newList):
         #calls the function again so the process can repeat till only one item is in the
         #list.
         return shuffle(usuableList, number, newList)
+
+
+    
+#initialises variable so that the while loop runs
+inputBool = False
+#until the list entered is all integers
+while inputBool == False:
+    #makes sure entered list is only integers
+    try:
+        #inputs list
+        inputList = input("Please enter a series of numbers")
+        #splits up entered characters on the , to form a list
+        usuableList = inputList.split(",")
+        #goes through items in the list to check they are all integers
+        for i in usuableList:
+            int(i)
+        #initalises what will be our random number
+        number = 0
+        #initalises the new list
+        newList = []
+        #initalises random numbers generated list
+        numberList = []
+        #calls the shuffle, returning a shuffled version of the list.
+        print(shuffle(usuableList, number, newList))
+        #sets boolean value to true to exit loop
+        inputBool = True
+    #if list entered is not full of integers, then outputs error
+    except ValueError:
+        print("Please only input a series of integers")
     
 
-
-
-#inputs list
-inputList = input("Please enter a series of numbers")
-#splits up entered characters on the , to form a list
-usuableList = inputList.split(",")
-#initalises what will be our random number
-number = 0
-#initalises the new list
-newList = []
-#initalises random numbers generated list
-numberList = []
-
-#calls the shuffle, returning a shuffled version of the list.
-print(shuffle(usuableList, number, newList))
     
