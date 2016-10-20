@@ -4,7 +4,7 @@ def division(fiveCount, number):
     The first argument should be an integer and the second should be a float.
     '''
     #checks for base case.
-    if number > 0 and number < 1:
+    if number >= 0 and number < 1:
         return fiveCount
     else:
         #calculates the float number of trailing 0s

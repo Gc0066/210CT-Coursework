@@ -8,7 +8,7 @@ def shuffle(usuableList, number, newList):
     Inputs are the list version of the input, an integer that will be a random
     number after first call and ta list that is the return list.'''
 
-    #checks fro base case
+    #checks for base case
     if len(usuableList) == 1:
         #if there is only one item left in the list, then put that last
         #item in the new list and then return it so it can be output.
@@ -27,33 +27,37 @@ def shuffle(usuableList, number, newList):
         return shuffle(usuableList, number, newList)
 
 
-    
+
+#inputs list
+inputList = input("Please enter a series of numbers")
+#splits up entered characters on the , to form a list
+usuableList = inputList.split(",")
 #initialises variable so that the while loop runs
 inputBool = False
+i = 0
 #until the list entered is all integers
-while inputBool == False:
+while inputBool == False or i <= len(usuableList)-1:
     #makes sure entered list is only integers
     try:
+        #goes through items in the list to check they are all integers
+        int(usuableList[i])
+        i = i + 1
+        #sets boolean value to true to exit loop
+        inputBool = True
+    #if list entered is not full of integers/if item is not an integer, then outputs error
+    except ValueError:
+        print("Please only input a series of integers")
         #inputs list
         inputList = input("Please enter a series of numbers")
         #splits up entered characters on the , to form a list
         usuableList = inputList.split(",")
-        #goes through items in the list to check they are all integers
-        for i in usuableList:
-            int(i)
-        #initalises what will be our random number
-        number = 0
-        #initalises the new list
-        newList = []
-        #initalises random numbers generated list
-        numberList = []
-        #calls the shuffle, returning a shuffled version of the list.
-        print(shuffle(usuableList, number, newList))
-        #sets boolean value to true to exit loop
-        inputBool = True
-    #if list entered is not full of integers, then outputs error
-    except ValueError:
-        print("Please only input a series of integers")
-    
+        i = 0
 
-    
+
+ 
+#initalises what will be our random number
+number = 0
+#initalises the new list
+newList = []
+#calls the shuffle, returning a shuffled version of the list.
+print(shuffle(usuableList, number, newList))

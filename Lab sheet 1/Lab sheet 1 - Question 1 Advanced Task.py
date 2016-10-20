@@ -21,10 +21,7 @@ numberHatched = 0
 
 #loops through from first day to last day inputted
 for i in range(1,days):
-    ##ignores first value as has already been done before loop, could start from 1 in the loop instead of 0
-    ##to get rid of statement.
-   # if i != 0:
-        #if it has been five days, hatch the aliens and add them to number of aliens.
+    #if it has been five days, hatch the aliens and add them to number of aliens.
     if i-numberOfDaysPerHatch >=0:
         numberHatched = numberOfEggs[i-numberOfDaysPerHatch]
             
