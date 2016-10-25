@@ -2,24 +2,28 @@
 #due too having to pass the variables to the function. Rather than just use
 #them immediately.
 
+def reverseSentence(splitSentence, reversedString, i):                  #(1)
+    while i >=0:                                                        #(n)
+        reversedString = reversedString + splitSentence[i] + " "        #(n)
+        i = i -1                                                        #(n)
+    return reversedString                                               #(1)
 inputSentence= input("Please input a sentence you would like reversed")  #(1)
 
 #splits the inputted sentence into just the words
-splitSentence = inputSentence.split()        #(1)
+splitSentence = inputSentence.split()                                   #(1)
 
 #print(splitSentence)
-reversedString = ""          #(1)
+reversedString = ""                                                     #(1)
 
 #finds the amount of words in the list. Takes away one as the list
 #is indexed from 0 so that loop therefore doesn't begin outside of list.
-i = len(splitSentence) -1          #(1)
+i = len(splitSentence) -1                                               #(1)
 
 #from the end of the list to the beginning. Add the item at position i in the
 #list to the new string.
-while i >=0:            #(n)
-    reversedString = reversedString + splitSentence[i] + " "        #(n)
-    i = i -1           #(n)
-print(reversedString)       #(1)
 
-#run time: 3n+5
+print(reverseSentence(splitSentence, reversedString, i))                #(1)
+
+#run time: 3n+7
 #big O: O(n)
+
