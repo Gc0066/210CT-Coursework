@@ -16,10 +16,10 @@ def isPrime(inputNumber, possibleFactor):                       #(n-1)
         #then it is not a prime number.
         return "Number is not a prime number"                   #(1)
 
-#get number and convert input into an integer.
+
 number = int(input("please enter a number"))                    #(1)
 
-#makes other number first possible factor.
+#assigns the first number that the input number could possibly be divisible by.
 possibleFactor = number-1                                       #(1)
 
 #ensures number could possible be a prime number.

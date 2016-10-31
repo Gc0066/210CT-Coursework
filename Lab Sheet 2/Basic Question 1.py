@@ -21,7 +21,7 @@ while boolean == False:
     try:
         #converts input to integer
         number = int(input("Please enter a number"))
-        #checks to see if it is an integer then if it is a
+        #checks to see if it is an integer then checks if it is a
         #positive one
         if number <= 0:
             #if it is not then raises exception so it can be caught by except

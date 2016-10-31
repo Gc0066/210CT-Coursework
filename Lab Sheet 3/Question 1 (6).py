@@ -11,17 +11,17 @@ def reverseSentence(splitSentence, reversedString, i):                  #(1)
     return reversedString                                               #(1)
 inputSentence= input("Please input a sentence you would like reversed")  #(1)
 
-#splits the inputted sentence into just the words
+
 splitSentence = inputSentence.split()                                   #(n)
 
-#print(splitSentence)
+
 reversedString = ""                                                     #(1)
 
 #finds the amount of words in the list. Takes away one as the list
 #is indexed from 0 so that loop therefore doesn't begin outside of list.
 i = len(splitSentence) -1                                               #(1)
 
-#passes the split sentence, the empty string and the length of split sentence.
+
 print(reverseSentence(splitSentence, reversedString, i))                #(1)
 
 #run time: 4n+7

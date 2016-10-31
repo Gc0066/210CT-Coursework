@@ -33,6 +33,6 @@ for i in range(1,days):
         numberOfAliens.append(numberOfAliens[i-1])
         #calculates amount of eggs laid that day.
     numberOfEggs.append(numberOfAliens[i] * numberOfEggsLaid)
-print(numberOfAliens)
+
 #print the last day of aliens.
 print(numberOfAliens[len(numberOfAliens)-1], "Aliens")

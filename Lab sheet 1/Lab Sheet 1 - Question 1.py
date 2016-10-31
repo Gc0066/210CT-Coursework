@@ -28,11 +28,11 @@ def shuffle(usuableList, number, newList):
 
 
 
-#inputs list
+
 inputList = input("Please enter a series of numbers")
 #splits up entered characters on the , to form a list
 usuableList = inputList.split(",")
-#initialises variable so that the while loop runs
+
 inputBool = False
 i = 0
 #until the list entered is all integers
@@ -47,7 +47,7 @@ while inputBool == False or i <= len(usuableList)-1:
     #if list entered is not full of integers/if item is not an integer, then outputs error
     except ValueError:
         print("Please only input a series of integers")
-        #inputs list
+
         inputList = input("Please enter a series of numbers")
         #splits up entered characters on the , to form a list
         usuableList = inputList.split(",")
@@ -57,7 +57,6 @@ while inputBool == False or i <= len(usuableList)-1:
  
 #initalises what will be our random number
 number = 0
-#initalises the new list
 newList = []
 #calls the shuffle, returning a shuffled version of the list.
 print(shuffle(usuableList, number, newList))

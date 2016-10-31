@@ -34,7 +34,7 @@ inputString = input("Please enter a word").lower()                      #(1)
 count = 0                                                               #(1)
 #initialises new string that will hold the removed vowel version of the string
 newString = ""                                                          #(1)
-#calls function to print
+
 print(removeVowels(inputString, count, newString))                      #(1)
 
 #runtime: 4n + m + 3(n-m)+ 5
