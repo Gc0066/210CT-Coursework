@@ -14,15 +14,9 @@ class List(object):
         #as no nodes yet.
         self.head=None
         self.tail=None
-       # self.previousNode = None
         self.listOfNodes = []
-        self.i = 0
         
     def insert(self,n,x):
-        self.listOfNodes.append(x)
-
-
-        #Not actually perfect: how do we prepend to an existing list?
 
         #n is referencing none or it is referencing the head node
         #x is referencing the node just initialised
@@ -30,23 +24,29 @@ class List(object):
         #runs for all nodes that are not the head
         if n!=None:
             #makes the next value of node currently being inserted = none
-            #this is because it cannot point to anything as their is no next node after
+            #this is because it cannot point to anything as there is no next node after
             #the one being inserted right now.
             x.next=n.next
             #makes the node before the one currently being interserted.
             #Point to x aka. the current node being inserted.
             n.next=x
             #then makes the current node point to the node before it
-            x.prev=n
-            #htis if maybe stops the list?
-            #print(x.next, "the next node to current one being initialsied")
-            #print(n.next, "the next node for the one that was initalsied before the current one")
-            #print(x.prev, "the previous node to the one currently being initialsied")
-            
+            x.prev=n          
             
             if x.next!=None:
                 x.next.prev=x
-        #runs for first node 
+        #runs for first node
+        if n==None and self.head != None:
+            #make the previous of the old head = the new head
+            self.head.prev = x
+            #makes the new heads next pointer, point at the old head.
+            x.next = self.head
+            #make the inserted node the head
+            self.head = x
+            #make the previous of the new head = none.
+            x.prev = None
+            
+            
         if self.head==None:
             #same way of writing self.head = x and then self.tail = x on two different lines.
             #Thus this makes the head and the tail the first node.
@@ -64,9 +64,11 @@ class List(object):
 
             
     def display(self):
-        #comment this
+        
         values=[]
         n=self.head
+        #goes from the head to the tail.
+        #ending when it has gone past the tail.
         while n!=None:
             values.append(str(n.value))
             n=n.next
@@ -80,13 +82,9 @@ class List(object):
         #until node is found
         while nodeFound == False:
             
-            print(searchNode)
-            print(searchNode.value)
-
             #if the current node is the desired node to be
             #deleted.
-            #if searchNode.value == deleteNode:
-            if searchNode == deleteNode:
+            if searchNode.value == deleteNode:
 
                 #if it is not the head
                 if searchNode.prev != None:
@@ -111,7 +109,7 @@ class List(object):
                     #after deletion the tail node.
                     l.tail = searchNode.prev
                     
-                searchNode.del
+                #searchNode.del
                 nodeFound = True
                 
             #if at the end of the linked list and the
@@ -122,6 +120,7 @@ class List(object):
             #otherwise go to next node
             else:
                 searchNode = searchNode.next
+        return True
 
      
 ##            
@@ -135,11 +134,17 @@ if __name__ == '__main__':
     l.insert(None, Node(4))
     #after first node, .head is assigned to the first node thus l.head refernces the first node.
     l.insert(l.head, Node(5))
-    l.insert(l.head,Node(6))
+    l.insert(None,Node(6))
     l.insert(l.head,Node(8))
     l.insert(l.head, Node(10))
-
-    #could either search for value.
-    #or could search by node using dictionary.
-    l.delete(l.listOfNodes[4])
+    l.insert(None, Node(1))
+    boolean = False
+    while boolean == False:
+        try:
+            number = int(input("Please enter a number to delete"))
+            boolean = True
+        except ValueError:
+            print("Please enter an integer")
+            
+    print(l.delete(number))
     l.display()
