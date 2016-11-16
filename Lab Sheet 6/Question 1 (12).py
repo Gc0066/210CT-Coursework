@@ -1,5 +1,3 @@
-
-
 class BinTreeNode():
 
     def __init__(self, value):
@@ -10,6 +8,7 @@ class BinTreeNode():
 
         
 def tree_insert(tree, item):
+
     if tree==None:
         tree=BinTreeNode(item)
     else:
@@ -36,17 +35,48 @@ def postorder(tree):
   
 
 def in_order(tree):
-    while :
-        
-
-    while tree.right:
-        
-        
-    if(tree.left!=None):
-        in_order(tree.left)
-    print(tree.value)
-    if(tree.right!=None):
-        in_order(tree.right)
+    stack = []
+    treeEmpty = False
+    stack.append(tree)
+    while treeEmpty == False:
+        if tree != None:
+            stack.append(tree)
+            tree = tree.left
+            
+        elif tree == None and len(stack)>0:
+            x = stack.pop()
+            print(x.value)
+            tree = x.right
+        else:
+            treeEmpty = True
+            
+    
+    
+##    while bool = False:
+####        stack.append(tree.value)
+####        use stack to then navigate through tree
+##
+##        if tree.left == None:
+##            printList.append(tree)
+##            stack.pop()
+##        else:
+##            stack.append(tree.value)
+##            tree = tree.left
+##            if tree.right == None:
+##                backtrack
+##
+##    if can go left then always go left
+##    if cannot go left print
+##    if can go right go right
+##    if cannot go right then back track
+##    repeat
+##        
+##        
+##    if(tree.left!=None):
+##        in_order(tree.left)
+##    print(tree.value)
+##    if(tree.right!=None):
+##        in_order(tree.right)
         
 
 if __name__ == '__main__':
