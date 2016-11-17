@@ -16,8 +16,19 @@ def isPrime(inputNumber, possibleFactor):                       #(n-1)
         #then it is not a prime number.
         return "Number is not a prime number"                   #(1)
 
+inputTest = False                                               #(1)
+while inputTest == False:                                       #(n)
+    try:                                                        #(n)
+        number = int(input("please enter a number"))            #(n)
+        inputTest = True                                        #(n)
 
-number = int(input("please enter a number"))                    #(1)
+    except ValueError:                                          #(n)
+        print("please enter an integer")                        #(n)
+        
+
+
+
+
 
 #assigns the first number that the input number could possibly be divisible by.
 possibleFactor = number-1                                       #(1)
@@ -28,5 +39,5 @@ if possibleFactor <1:                                           #(1)
 else:                                                           #(1)
     print(isPrime(number, possibleFactor))                      #(1)
 
-#run time: (4n-6)+9
+#run time: 6n+(4n-6)+9
 #big O: O(n)

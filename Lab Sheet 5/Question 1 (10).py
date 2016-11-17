@@ -1,10 +1,19 @@
-
-#inputSeq = [1,2,3,4,5,6,7,10,3,20,30,50,60,55,10,11,12,13,14,15,16,17]
-#inputSeq = [-5, 0,1,100,55,102,103]
-#inputSeq = [1,4,5,3,1,2,3,1,2,3,4,5,2,4,5,6,7]
-#inputSeq = [1,4,3,1,2,3,4]
-inputSeq = [1,3,2,4,5,6,10,1]                                    #(1)
-
+inputTest = False                                               #(1)
+while inputTest == False:                                       #(n)
+    try:                                                        #(n)
+        sizeOfInput = int(input("Please enter the size of the list"))       #(n)
+        inputTest = True                                        #(n)
+    except ValueError:                                          #(n)
+        print("please enter a number")                          #(n)
+count = 0                                                       #(1)
+inputSeq = []                                                   #(1)
+while count <= sizeOfInput - 1:                                 #(n)
+    try:                                                        #(n)
+        x = int(input("enter number"))                          #(n)
+        inputSeq.append(x)                                      #(n)
+        count = count + 1                                       #(n)
+    except ValueError:                                          #(n)
+        print("Please input a number")                          #(n)
 
 biggestSequence = 0                                             #(1)
 subSequence = []                                                #(1)
@@ -78,5 +87,5 @@ else:                                                           #(1)
 
 print(subSequence)                                              #(1)
 
-#Runtime = 19n+11
+#Runtime = 32n+13
 #Big O: O(n)

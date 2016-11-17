@@ -14,10 +14,16 @@ def division(fiveCount, number):
         #calls the function again to keep it going till the base case hits.
         return division(fiveCount, number/5) 
 
+inputTest = False
+while inputTest == False:
+    try:
+        inputNumber = input("Please enter a number")
+        #turns it into a float so that when it is divided it can then be rounded down.
+        floatHolder = float(inputNumber)
+        inputTest = True
+    except ValueError:
+        print("Please only input numbers into the system")
 
-inputNumber = input("Please enter a number")
-#turns it into a float so that when it is divided it can then be rounded down.
-floatHolder = float(inputNumber)
 #initalises the number of trailing 0s.
 count = 0
 

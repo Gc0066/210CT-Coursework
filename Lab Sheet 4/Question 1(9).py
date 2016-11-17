@@ -51,18 +51,55 @@ def binarySearch(sortedList, lowerNumber, upperNumber, midpoint):           #(1)
     return valueFound                                                      #(1)
 
 
+inputTest = False                                                           #(1)
+while inputTest == False:                                                 #(n)
+    try:                                                                    #(n)
+        count = int(input("How many numbers are in your sorted list?"))     #(n)
+        inputTest = True                                                    #(n)
+    except:                                                                 #(n)
+        print("please enter an integer")                                    #(n)
+i = 0                                                                       #(1)
+sortedList = []                                                             #(1)
+while i <= count-1:                                                         #(n)
+    try:                                                                    #(n)
+        number = int(input("enter number"))                                 #(n)
+        if i == 0:                                                          #(n)
+            sortedList.append(number)                                       #(n)
+            i = i + 1                                                       #(n)
+        elif number < sortedList[len(sortedList)-1]:                        #(n)
+            raise ValueError                                                #(n)
+        else:                                                               #(n)
+            sortedList.append(number)                                       #(n)
+            i = i+1                                                         #(n)
+            
+    except ValueError:                                                      #(n)
+        print("Please make sure your list is sorted")                       #(n)
+    
+
+inputTest = False                                                           #(1)
+while inputTest == False:                                                   #(n)
+    try:                                                                    #(n)
+            
+        lowerNumber = int(input("please enter lower number in interval"))   #(n)
+        upperNumber = int(input("please enter upper number in interval"))   #(n)
+        if lowerNumber > sortedList[len(sortedList)-1] or upperNumber < sortedList[0]:  #(n)
+            print(False)                                                    #(1)
+            inputTest = True                                                #(1)
+        else:                                                               #(n)
+            if lowerNumber <= upperNumber:                                  #(n)
+                inputTest = True                                            #(1)
+                midpoint = int(0 + (len(sortedList)+0)/2)                                  #(1)
+                print(binarySearch(sortedList, lowerNumber, upperNumber, midpoint))        #(1)
+
+    except ValueError:                                                      #(n)
+        print("Please make sure you're entering only integers")             #(n)
+        
 
 
-sortedList = [6,14,22,36]                                                   #(1)
-#assigns the numbers to a variable so can be used later.
-lowerNumber = int(input("please enter lower number in interval"))                 #(1)                               #(1)
-upperNumber = int(input("please enter upper number in interval"))           #(1)                                 #(1)                                          
 
-midpoint = int(0 + (len(sortedList)+0)/2)                                  #(1)
 
-print(binarySearch(sortedList, lowerNumber, upperNumber, midpoint))        #(1)
 
-#Runtime: 10log(n)+14
+#Runtime of algorithm excluding input validation: 10log(n)+11
 
 #As the length of the list getting searched is shortened by moving to the midpoint,
 #and then eliminating the list that is either above it or below it. 
@@ -70,4 +107,4 @@ print(binarySearch(sortedList, lowerNumber, upperNumber, midpoint))        #(1)
 #Thus it is instead log(n) due to it being a divide and conquer algorithm
 
 
-#Big O: O(log(n))
+#Big O excluding input validation: O(log(n))
