@@ -44,6 +44,7 @@ def in_order(tree):
     while treeEmpty == False:                                                                           #(n)
         #If the node 'tree' currently points to IS NOT past the last node of the branch
         if tree != None:                                                                                #(n)
+            
             #add the node to the end of the list(stack)
             stack.append(tree)                                                                          #(n)
             #move to next node on the left of the node previously pointed to,
@@ -54,6 +55,7 @@ def in_order(tree):
         #if node 'tree' points to IS past the last node of the branch
         #and their is still values to bracktrack too
         elif tree == None and len(stack)>0:                                                             #(n)
+            
             #remove the last node in the stack
             x = stack.pop()                                                                             #(n)
             print(x.value)                                                                              #(n)
@@ -62,6 +64,11 @@ def in_order(tree):
             tree = x.right                                                                              #(n)
             #thus it will now go down right handside. if  no right hand side however then 'tree'
             #will equal none and thus the last appended node will be popped.
+
+            #how backtracks:
+            #if no right side tree will equal none, pop stack thus pops 5 in this case and then assigns
+            #tree to equal 5.right, which equals none so thus it will then pop 6 and that does have right.
+            #so will then go down that side.
 
 
         #if 'tree' equals none and there is no
