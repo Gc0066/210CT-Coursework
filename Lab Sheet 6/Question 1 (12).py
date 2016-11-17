@@ -35,43 +35,43 @@ def postorder(tree):
   
 
 def in_order(tree):
-    stack = []
-    treeEmpty = False
-    stack.append(tree)
-    while treeEmpty == False:
-        if tree != None:
-            stack.append(tree)
-            tree = tree.left
-            
-        elif tree == None and len(stack)>0:
-            x = stack.pop()
-            print(x.value)
-            tree = x.right
-        else:
-            treeEmpty = True
-            
+    '''takes input of the root node of the binary tree.
+    Outputs the binary tree in order of value.'''
     
-    
-##    while bool = False:
-####        stack.append(tree.value)
-####        use stack to then navigate through tree
-##
-##        if tree.left == None:
-##            printList.append(tree)
-##            stack.pop()
-##        else:
-##            stack.append(tree.value)
-##            tree = tree.left
-##            if tree.right == None:
-##                backtrack
-##
-##    if can go left then always go left
-##    if cannot go left print
-##    if can go right go right
-##    if cannot go right then back track
-##    repeat
-##        
-##        
+    stack = []                                                                                          #(1)
+    treeEmpty = False                                                                                   #(1)
+
+    while treeEmpty == False:                                                                           #(n)
+        #If the node 'tree' currently points to IS NOT past the last node of the branch
+        if tree != None:                                                                                #(n)
+            #add the node to the end of the list(stack)
+            stack.append(tree)                                                                          #(n)
+            #move to next node on the left of the node previously pointed to,
+            #this could be none if there is not a node
+            tree = tree.left                                                                            #(n)
+            print(tree.value, "first if")
+
+        #if node 'tree' points to IS past the last node of the branch
+        #and their is still values to bracktrack too
+        elif tree == None and len(stack)>0:                                                             #(n)
+            #remove the last node in the stack
+            x = stack.pop()                                                                             #(n)
+            print(x.value)                                                                              #(n)
+            #then make node point to the node on the right of the node that was just popped(removed)
+            print(x.right.value)
+            tree = x.right                                                                              #(n)
+            #thus it will now go down right handside. if  no right hand side however then 'tree'
+            #will equal none and thus the last appended node will be popped.
+
+
+        #if 'tree' equals none and there is no
+        #nodes in the list, then have gone through all nodes
+        #thus ends loop.
+        else:                                                                                           #(1)
+            treeEmpty = True                                                                            #(1)
+
+ 
+   
 ##    if(tree.left!=None):
 ##        in_order(tree.left)
 ##    print(tree.value)
@@ -89,3 +89,7 @@ if __name__ == '__main__':
   tree_insert(t,4)
   tree_insert(t,11)
   in_order(t)
+
+
+#runtime for In_Order: 8n+4
+#Big O: O(n)
