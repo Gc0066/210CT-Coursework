@@ -50,7 +50,6 @@ def in_order(tree):
             #move to next node on the left of the node previously pointed to,
             #this could be none if there is not a node
             tree = tree.left                                                                            #(n)
-            print(tree.value, "first if")
 
         #if node 'tree' points to IS past the last node of the branch
         #and their is still values to bracktrack too
@@ -60,7 +59,6 @@ def in_order(tree):
             x = stack.pop()                                                                             #(n)
             print(x.value)                                                                              #(n)
             #then make node point to the node on the right of the node that was just popped(removed)
-            print(x.right.value)
             tree = x.right                                                                              #(n)
             #thus it will now go down right handside. if  no right hand side however then 'tree'
             #will equal none and thus the last appended node will be popped.
