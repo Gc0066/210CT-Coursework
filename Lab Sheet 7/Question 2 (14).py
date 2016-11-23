@@ -3,6 +3,7 @@ class Vertice():
         self.value = value
         #initalises list of nodes current node will be connected via edge to.
         self.connectedTo = []
+        #self.conenctToLocation = []
 
 class Graph():
     def __init__(self):
@@ -28,9 +29,10 @@ class Graph():
             print("Node not in graph")                                  #(1)
             return False                                                #(1)
         else:                                                           #(1)
-            NodeOne.connectedTo.append(secondVertice)                   #(1)
-            NodeTwo.connectedTo.append(firstVertice)                    #(1)
-
+            ##NodeOne.connectedTo.append(secondVertice)                   #(1)
+            ##NodeTwo.connectedTo.append(firstVertice)                    #(1)
+            NodeOne.connectedTo.append(NodeTwo)
+            NodeTwo.connectedTo.append(NodeOne)
 
     def insertNode(self, Value):
         '''takes input of self and an integer, creates a vertice.'''
@@ -39,6 +41,42 @@ class Graph():
     def display(self, listOfNodes):
         for n in listOfNodes:
             print(n.value, n.connectedTo)
+
+    def DFS(self, startNode):
+        stack = []
+        visited = []
+        stack.append(startNode)
+        #print(stack)
+
+        while len(stack) != 0:
+            #could do a loop here to turn int input into memory location of start node.
+            x = stack.pop()
+            #print(x.value,"x")
+            #maybe use value
+            if x.value not in visited:
+                visited.append(x.value)
+                #could now append it to the text file
+                for i in x.connectedTo:
+                    #print(i, "i")
+                    stack.append(i)
+        #or could now add all at once to a text file.
+        return visited
+    #currently works. However want it to display numbers rather than memory locations
+
+    def BFS(self, startNode):
+        Queue = #something
+        #maybe import from linked list?
+        visited = []
+        Queue.enqueue(v)
+        while len(Queue) != 0:
+            x = Queue.dequeue()
+            if x not in visited:
+                visited.append(x)
+                for i in x.connectedTo:
+                    Queue.enqueue(i)
+        return visited
+                    
+        
 
 g = Graph()
 
@@ -54,11 +92,12 @@ g.insertNode(8)
 g.insertNode(9)
 
 g.insertEdge(5,1)
+g.insertEdge(5,3)
 g.insertEdge(3,6)
+g.insertEdge(1,8)
 #should give error
-g.insertEdge(10,0)
+#g.insertEdge(10,0)
 
 g.display(g.listOfNodes)
 
-#runtime: 5n + 9
-#Big O: O(n)
+print(g.DFS(g.listOfNodes[0]))
