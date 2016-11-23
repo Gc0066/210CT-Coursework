@@ -35,16 +35,16 @@ class List(object):
             
             if x.next!=None:
                 x.next.prev=x
-        #runs for first node
-        if n==None and self.head != None:
+        ##ALLOWS PREPEND
+        if n==None and self.head != None:                                           #(1)
             #make the previous of the old head = the new head
-            self.head.prev = x
+            self.head.prev = x                                                      #(1)
             #makes the new heads next pointer, point at the old head.
-            x.next = self.head
+            x.next = self.head                                                      #(1)
             #make the inserted node the head
-            self.head = x
+            self.head = x                                                           #(1)
             #make the previous of the new head = none.
-            x.prev = None
+            x.prev = None                                                           #(1)
             
             
         if self.head==None:
@@ -76,54 +76,51 @@ class List(object):
 
     def delete(self,deleteNode):
         
-        nodeFound = False
+        nodeFound = False                                                   #(1)
         #sets the first node to be checked as the first node in the list
-        searchNode = self.head
+        searchNode = self.head                                              #(1)
         #until node is found
-        while nodeFound == False:
+        while nodeFound == False:                                           #(n)
             
             #if the current node is the desired node to be
             #deleted.
-            if searchNode.value == deleteNode:
+            if searchNode.value == deleteNode:                              #(n)
 
                 #if it is not the head
-                if searchNode.prev != None:
+                if searchNode.prev != None:                                 #(1)
                     #make the previous node point to
                     #the node in front of the node being
                     #deleted.
-                    searchNode.prev.next = searchNode.next
+                    searchNode.prev.next = searchNode.next                  #(1)
                 #make the node that will be the first node
                 #after deletion the head node.
-                else:
-                    l.head = searchNode.next
+                else:                                                       #(1)
+                    l.head = searchNode.next                                #(1)
 
                 #if it is not the tail
-                if searchNode.next != None:
+                if searchNode.next != None:                                 #(1)
                     #make the next node point to
                     #the node previous to the node being
                     #deleted.
-                    searchNode.next.prev = searchNode.prev
+                    searchNode.next.prev = searchNode.prev                  #(1)
                     
-                else:
+                else:                                                       #(1)
                     #make the node that will be the last node
                     #after deletion the tail node.
-                    l.tail = searchNode.prev
+                    l.tail = searchNode.prev                                #(1)
                     
-                #searchNode.del
-                nodeFound = True
+                del(searchNode)                                             #(1)
+                nodeFound = True                                            #(1)
                 
             #if at the end of the linked list and the
             #current node is not the desired delete node.
-            elif searchNode.next == None:
-                return False
+            elif searchNode.next == None:                                   #(1)
+                return False                                                #(1)
 
             #otherwise go to next node
-            else:
-                searchNode = searchNode.next
-        return True
-
-     
-##            
+            else:                                                           #(n)
+                searchNode = searchNode.next                                #(n)
+        return True                                                         #(1)        
          
 if __name__ == '__main__':
     l=List()
@@ -148,3 +145,6 @@ if __name__ == '__main__':
             
     print(l.delete(number))
     l.display()
+
+#Runtime of Insert function and prepend code: 4n+20
+#Big O: O(n)

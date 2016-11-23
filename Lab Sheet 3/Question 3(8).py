@@ -38,5 +38,4 @@ newString = ""                                                          #(1)
 print(removeVowels(inputString, count, newString))                      #(1)
 
 #runtime: 4n + m + 3(n-m)+ 5
-
 #big O: O(n)

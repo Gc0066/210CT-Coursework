@@ -1,4 +1,3 @@
-
 def IntegerCheck(x):
     """This function will take a number input and check whether it is
     an integer or a float. Returning a boolean value of true if it is an
