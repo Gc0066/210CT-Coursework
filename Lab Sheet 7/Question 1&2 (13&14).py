@@ -14,7 +14,6 @@ class Vertice():
         self.value = value
         #initalises list of nodes current node will be connected via edge to.
         self.connectedTo = []
-        #self.conenctToLocation = []
 
 class Graph():
     def __init__(self):
@@ -40,33 +39,48 @@ class Graph():
             print("Node not in graph")                                  #(1)
             return False                                                #(1)
         else:                                                           #(1)
-            NodeOne.connectedTo.append(NodeTwo)
-            NodeTwo.connectedTo.append(NodeOne)
+            NodeOne.connectedTo.append(NodeTwo)                         #(1)
+            NodeTwo.connectedTo.append(NodeOne)                         #(1)
 
     def insertNode(self, Value):
         '''takes input of self and an integer, creates a vertice.'''
         self.listOfNodes.append(Vertice(Value))                         #(1)
 
     def display(self, listOfNodes):
+        '''takes input of list, list contains memory locations'''
+
+        #for every node, gets its list of connected nodes.
+        #prints them.
         neighbours = ""
         for n in listOfNodes:
             for nn in n.connectedTo:
                 neighbours = neighbours + " " + str(nn.value)
+                
             print(str(n.value) + ": " +  neighbours)
             neighbours = ""
             
 
     def DFS(self, startNode):
+        
         stack = []                                                      #(1)
         visited = []                                                    #(1)
+        #initalises stack with starting node
         stack.append(startNode)                                         #(1)
-                    
+
+        #while not all nodes have been printed            
         while len(stack) != 0:                                          #(n)
             x = stack.pop()                                             #(n)
+            #if end of stack has not been visited yet. visit it.
+            #otherwise pop next item and repeat process.
             if x.value not in visited:                                  #(n)
                 visited.append(x.value)                                 #(n)
+                #get every node x is connected to.
                 for i in x.connectedTo:                                 #(n^2)
+                    #add to stack so next x value will be one of the
+                    #edges of the current value of x.
                     stack.append(i)                                     #(n^2)
+                    
+        #formats output
         returnString = str(visited[0])                                  #(1)
         for i in visited:                                               #(n)
             if i != visited[0]:                                         #(n)
@@ -77,12 +91,17 @@ class Graph():
         queue = Queue()                                                 #(1)
         visited = []                                                    #(1)
         queue.enqueue(startNode)                                        #(1)
+        
         while len(queue.value) != 0:                                    #(n)
+            #gets from front of list
             x = queue.dequeue()                                         #(n^2)
             if x.value not in visited:                                  #(n)
+                #visit it if haven't visited.
                 visited.append(x.value)                                 #(n)
+                #add all connections to queue
                 for i in x.connectedTo:                                 #(n^2)
                     queue.enqueue(i)                                    #(n^2)
+
         returnString = str(visited[0])                                  #(1)
         for i in visited:                                               #(n)
             if i != visited[0]:                                         #(n)
@@ -109,10 +128,14 @@ g.insertEdge(10,9)
 
 g.display(g.listOfNodes)
 
+#opens file and writes result of dfs first then bfs on the next line, closes file.
 f = open("Search.txt", "w")
 f.write("DFS" + ": " + str(g.DFS(g.listOfNodes[0])))
 f.write("\nBFS" + ": " + str(g.BFS(g.listOfNodes[0])))
 f.close()
+
+#Runtime of InsertEdge and insert Node: 5n + 9
+#Big O: O(n)
 
 #Runtime of BFS and DFS: 5n^2+13n+10
 #Big O: O(n^2)
