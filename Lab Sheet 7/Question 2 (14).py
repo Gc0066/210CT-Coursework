@@ -1,3 +1,14 @@
+class Queue():
+    def __init__(self):
+        self.value = []                                                 #(1)
+
+    def enqueue(self, visitedNode):
+        self.value.append(visitedNode)                                  #(1)
+        
+    def dequeue(self):
+        frontVertice = self.value.pop(0)                                #(n)
+        return frontVertice                                             #(1)
+        
 class Vertice():
     def __init__(self, value):
         self.value = value
@@ -29,8 +40,6 @@ class Graph():
             print("Node not in graph")                                  #(1)
             return False                                                #(1)
         else:                                                           #(1)
-            ##NodeOne.connectedTo.append(secondVertice)                   #(1)
-            ##NodeTwo.connectedTo.append(firstVertice)                    #(1)
             NodeOne.connectedTo.append(NodeTwo)
             NodeTwo.connectedTo.append(NodeOne)
 
@@ -39,43 +48,46 @@ class Graph():
         self.listOfNodes.append(Vertice(Value))                         #(1)
 
     def display(self, listOfNodes):
+        neighbours = ""
         for n in listOfNodes:
-            print(n.value, n.connectedTo)
+            for nn in n.connectedTo:
+                neighbours = neighbours + " " + str(nn.value)
+            print(str(n.value) + ": " +  neighbours)
+            neighbours = ""
+            
 
     def DFS(self, startNode):
-        stack = []
-        visited = []
-        stack.append(startNode)
-        #print(stack)
-
-        while len(stack) != 0:
-            #could do a loop here to turn int input into memory location of start node.
-            x = stack.pop()
-            #print(x.value,"x")
-            #maybe use value
-            if x.value not in visited:
-                visited.append(x.value)
-                #could now append it to the text file
-                for i in x.connectedTo:
-                    #print(i, "i")
-                    stack.append(i)
-        #or could now add all at once to a text file.
-        return visited
-    #currently works. However want it to display numbers rather than memory locations
-
-    def BFS(self, startNode):
-        Queue = #something
-        #maybe import from linked list?
-        visited = []
-        Queue.enqueue(v)
-        while len(Queue) != 0:
-            x = Queue.dequeue()
-            if x not in visited:
-                visited.append(x)
-                for i in x.connectedTo:
-                    Queue.enqueue(i)
-        return visited
+        stack = []                                                      #(1)
+        visited = []                                                    #(1)
+        stack.append(startNode)                                         #(1)
                     
+        while len(stack) != 0:                                          #(n)
+            x = stack.pop()                                             #(n)
+            if x.value not in visited:                                  #(n)
+                visited.append(x.value)                                 #(n)
+                for i in x.connectedTo:                                 #(n^2)
+                    stack.append(i)                                     #(n^2)
+        returnString = str(visited[0])                                  #(1)
+        for i in visited:                                               #(n)
+            if i != visited[0]:                                         #(n)
+                returnString = returnString + ", " + str(i)             #(n)
+        return returnString                                             #(1)
+    
+    def BFS(self, startNode):
+        queue = Queue()                                                 #(1)
+        visited = []                                                    #(1)
+        queue.enqueue(startNode)                                        #(1)
+        while len(queue.value) != 0:                                    #(n)
+            x = queue.dequeue()                                         #(n^2)
+            if x.value not in visited:                                  #(n)
+                visited.append(x.value)                                 #(n)
+                for i in x.connectedTo:                                 #(n^2)
+                    queue.enqueue(i)                                    #(n^2)
+        returnString = str(visited[0])                                  #(1)
+        for i in visited:                                               #(n)
+            if i != visited[0]:                                         #(n)
+                returnString = returnString + ", " + str(i)             #(n)
+        return returnString                                             #(1)
         
 
 g = Graph()
@@ -83,11 +95,8 @@ g = Graph()
 g.insertNode(5)
 g.insertNode(10)
 g.insertNode(1)
-g.insertNode(2)
 g.insertNode(3)
-g.insertNode(4)
 g.insertNode(6)
-g.insertNode(7)
 g.insertNode(8)
 g.insertNode(9)
 
@@ -95,9 +104,16 @@ g.insertEdge(5,1)
 g.insertEdge(5,3)
 g.insertEdge(3,6)
 g.insertEdge(1,8)
-#should give error
-#g.insertEdge(10,0)
+g.insertEdge(6,10)
+g.insertEdge(10,9)
 
 g.display(g.listOfNodes)
 
-print(g.DFS(g.listOfNodes[0]))
+f = open("Search.txt", "w")
+f.write("DFS" + ": " + str(g.DFS(g.listOfNodes[0])))
+f.write("\nBFS" + ": " + str(g.BFS(g.listOfNodes[0])))
+f.close()
+
+#Runtime of BFS and DFS: 5n^2+13n+10
+#Big O: O(n^2)
+#n^2 due to having to loop through every neighbour of every node.
