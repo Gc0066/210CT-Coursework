@@ -63,8 +63,7 @@ class Graph():
                 neighbours = neighbours + " " + str(nn.value) + "(" + str(self.weightedEdges[n,nn]) + ")"
                 
             print(str(n.value) + ": " +  neighbours)
-            neighbours = ""
-            
+            neighbours = ""            
 
     def DFS(self, startNode):
         
@@ -164,10 +163,11 @@ class Graph():
 
         #goes from destination node to start node,
         #prepending their value to a string.
-        backTrack = destNode                                                                                    #(1)
-        path = ""                                                                                               #(1)
+        path = str(destNode.value)                                                                              #(1)
+        backTrack = destNode.pathTo                                                                             #(1)
+
         while backTrack != None:                                                                                #(n)
-            path = str(backTrack.value) + "," + path                                                            #(n)
+            path = str(backTrack.value) + ", " + path                                                           #(n)
             backTrack = backTrack.pathTo                                                                        #(n)
         path = "Path from start to end node: " + path                                                           #(1)
         
@@ -185,7 +185,7 @@ g.insertNode(1)
 g.insertNode(3)
 g.insertNode(6)
 g.insertNode(8)
-g.insertNode(9)#
+g.insertNode(9)
 g.insertNode(20)
 g.insertNode(21)
 g.insertNode(22)
@@ -193,13 +193,13 @@ g.insertNode(22)
 g.insertEdge(5,1,6)
 g.insertEdge(5,3,8)
 g.insertEdge(3,6,2)
-g.insertEdge(6,9, 8)
+g.insertEdge(6,9,8)
 g.insertEdge(10,3,9)
 g.insertEdge(1,8,4)
 g.insertEdge(9,20,3)
 g.insertEdge(21,9,2)
 g.insertEdge(22,9,8)
-g.insertEdge(8, 5, 1)
+g.insertEdge(8,5,1)
 
 
 
@@ -212,7 +212,7 @@ f.write("DFS" + ": " + str(g.DFS(g.listOfNodes[0])))
 f.write("\nBFS" + ": " + str(g.BFS(g.listOfNodes[0])))
 f.close()
 
-print(g.dijkstra(g.listOfNodes[0], g.listOfNodes[1]))
+print(g.dijkstra(g.listOfNodes[2], g.listOfNodes[6]))
 
 #Runtime of InsertEdge and insert Node: 5n + 9
 #Big O: O(n)
