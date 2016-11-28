@@ -117,75 +117,61 @@ class Graph():
     def dijkstra(self, startNode, destNode):
         '''takes input of graph, the starting node and the ending node.
         returns string of the path, shown by their node value,
-        from end to start node.'''
-
-
-        visited = []
-        #used to backTrack
-        stackOfNodes = []
+        from start to end node.'''
+        
+        visited = []                                                                                            #(1)
 
         #sets all nodes tentative weight to infinity. So they can be updated later.
-        for vertex in g.listOfNodes:
-            vertex.tentWeight = float('inf')
+        for vertex in g.listOfNodes:                                                                            #(n)
+            vertex.tentWeight = float('inf')                                                                    #(n)
 
         #as we are at start node. tentWeight is 0
-        startNode.tentWeight = 0
-        currentNode = startNode
-        number = 0
+        startNode.tentWeight = 0                                                                                #(1)
+        currentNode = startNode                                                                                 #(1)
+        number = 0                                                                                              #(1)
 
-        #appends to VISITED NEED TO SAY WHY
-        visited.append(currentNode)
+        #appends start node as it is visited. Located here as appends to visited
+        #after moving to next node.
+        visited.append(currentNode)                                                                             #(1)
 
-        
-        while currentNode != destNode:
+        while currentNode != destNode:                                                                          #(n)
             
-            for neighbour in currentNode.connectedTo:
+            for neighbour in currentNode.connectedTo:                                                           #(n^2)
+                
                 #updates weight of each of the nodes the current node
                 #is connected to.
-                #Thus will eventually find shortest path to each node.
-                if currentNode.tentWeight+self.weightedEdges[currentNode, neighbour] < neighbour.tentWeight:
-                    neighbour.tentWeight = currentNode.tentWeight+self.weightedEdges[currentNode, neighbour]
-                    neighbour.pathTo = currentNode
+                #Thus will eventually find shortest path to each node.               
+                if currentNode.tentWeight+self.weightedEdges[currentNode, neighbour] < neighbour.tentWeight:    #(n^2)  
+                    neighbour.tentWeight = currentNode.tentWeight+self.weightedEdges[currentNode, neighbour]    #(n^2)
+                    neighbour.pathTo = currentNode                                                              #(n^2)
                                
             #resets minimum to infinite so can find smallest path.
-            minimum = float('inf')
+            minimum = float('inf')                                                                              #(n)
 
-            for neighbour in currentNode.connectedTo:
-                #
-                number = number + 1
-                print(neighbour.value)
-                #finds the neighbour with the smallest path
+            for neighbour in self.listOfNodes:                                                                  #(n^2)
+                
+                #finds the node in the entire graph that has the
+                #smallest tentative weight
                 #which has not been visited.
                 #if tentWeight same as minimum it chooses first path.
-                if neighbour not in visited and neighbour.tentWeight < minimum:
-                    #
-                    tempStore= neighbour
-                    minimum = neighbour.tentWeight
-                    number = 0
-                    stackOfNodes.append(currentNode)
-                    l = ""
-                    for i in stackOfNodes:
-                        l = l + "," + str(i.value)
-                    print(l)
+                
+                if neighbour not in visited and neighbour.tentWeight < minimum:                                 #(n^2)
+                    currentNode = neighbour                                                                     #(n^2)
+                    #sets minimum weight to the lowest node tentWeight so far.
+                    minimum = neighbour.tentWeight                                                              #(n^2)
                     
-                else:
-                    #if all neighbours have been visited. Backtrack to node before
-                    #current.
-                    if len(currentNode.connectedTo) == number:
-                        tempStore = stackOfNodes.pop()
-                        print(tempStore.value, "popped")
-                        number = 0
-            
-            number = 0
-            currentNode = tempStore
-            visited.append(currentNode)
+            visited.append(currentNode)                                                                         #(n)
 
-        backTrack = destNode
-        path = "Path from end to start node as being: "
-        while backTrack != None:
-            path = path + str(backTrack.value) + ","
-            backTrack = backTrack.pathTo
-        return path
+        #goes from destination node to start node,
+        #prepending their value to a string.
+        backTrack = destNode                                                                                    #(1)
+        path = ""                                                                                               #(1)
+        while backTrack != None:                                                                                #(n)
+            path = str(backTrack.value) + "," + path                                                            #(n)
+            backTrack = backTrack.pathTo                                                                        #(n)
+        path = "Path from start to end node: " + path                                                           #(1)
+        
+        return path                                                                                             #(1)
 
         
         
@@ -199,21 +185,11 @@ g.insertNode(1)
 g.insertNode(3)
 g.insertNode(6)
 g.insertNode(8)
-g.insertNode(9)
+g.insertNode(9)#
 g.insertNode(20)
 g.insertNode(21)
 g.insertNode(22)
 
-##g.insertEdge(5,1,6)
-##g.insertEdge(5,20,4)
-##g.insertEdge(5,3,8)
-##g.insertEdge(3,6,2)
-##g.insertEdge(1,8,4)
-##g.insertEdge(6,10,9)
-##g.insertEdge(10,9,8)
-##g.insertEdge(8, 5, 1)
-
-#test
 g.insertEdge(5,1,6)
 g.insertEdge(5,3,8)
 g.insertEdge(3,6,2)
@@ -224,6 +200,8 @@ g.insertEdge(9,20,3)
 g.insertEdge(21,9,2)
 g.insertEdge(22,9,8)
 g.insertEdge(8, 5, 1)
+
+
 
 
 g.display(g.listOfNodes)
@@ -242,3 +220,6 @@ print(g.dijkstra(g.listOfNodes[0], g.listOfNodes[1]))
 #Runtime of BFS and DFS: 5n^2+13n+10
 #Big O: O(n^2)
 #n^2 due to having to loop through every neighbour of every node.
+
+#Runtime of Djikstra's Algorithm: 8n^2+8n+9
+#Big O: O(n^2)
