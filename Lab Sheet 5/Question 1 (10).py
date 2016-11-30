@@ -2,9 +2,11 @@ inputTest = False                                               #(1)
 while inputTest == False:                                       #(n)
     try:                                                        #(n)
         sizeOfInput = int(input("Please enter the size of the list"))       #(n)
+        if sizeOfInput < 1:                                     #(n)
+            raise ValueError                                    #(n)
         inputTest = True                                        #(n)
     except ValueError:                                          #(n)
-        print("please enter a number")                          #(n)
+        print("please enter a postive integer")                 #(n)
 count = 0                                                       #(1)
 inputSeq = []                                                   #(1)
 while count <= sizeOfInput - 1:                                 #(n)
@@ -87,5 +89,5 @@ else:                                                           #(1)
 
 print(subSequence)                                              #(1)
 
-#Runtime = 32n+13
+#Runtime = 34n+13
 #Big O: O(n)

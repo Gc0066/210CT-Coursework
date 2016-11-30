@@ -18,11 +18,14 @@ inputTest = False
 while inputTest == False:
     try:
         inputNumber = input("Please enter a number")
+
         #turns it into a float so that when it is divided it can then be rounded down.
         floatHolder = float(inputNumber)
+        if floatHolder<0:
+            raise ValueError
         inputTest = True
     except ValueError:
-        print("Please only input numbers into the system")
+        print("Please only input numbers larger than or equal to 0 into the system")
 
 #initalises the number of trailing 0s.
 count = 0
