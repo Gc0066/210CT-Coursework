@@ -5,7 +5,7 @@
 #a vowel.
 
 def removeVowels(inputString, count, newString):                        #(n)
-    '''’’Function passed are a string, an integer and another string.
+    '''Function passed are a string, an integer and another string.
     Returns a string. Function places every character that is not a vowel into a new string
     Until the end of the input string. It is then returned to the user.'''
 
