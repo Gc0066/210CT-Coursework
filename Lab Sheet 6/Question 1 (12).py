@@ -14,8 +14,8 @@ def tree_insert(tree, item):
     else:
         if(item < tree.value):
             if(tree.left==None):
-                #.left points to only the first node on its right.
-                #not all of the nodes on the right.
+                #.left points to only the first node on its left.
+                #not all of the nodes on the left.
                 tree.left=BinTreeNode(item)
             else:
                 tree_insert(tree.left,item)
