@@ -61,7 +61,9 @@ class Graph():
             
 
     def DFS(self, startNode):
-        
+        '''Takes input of a memory location that contains a node. performs DFS
+         on the graph. Returns a concatenated string of the values of the nodes,
+         in the order they were visited.'''
         stack = []                                                      #(1)
         visited = []                                                    #(1)
         #initalises stack with starting node
@@ -88,6 +90,9 @@ class Graph():
         return returnString                                             #(1)
     
     def BFS(self, startNode):
+        '''Takes input of a memory location that contains a node. performs BFS
+         on the graph. Returns a concatenated string of the values of the nodes,
+         in the order they were visited.'''
         queue = Queue()                                                 #(1)
         visited = []                                                    #(1)
         queue.enqueue(startNode)                                        #(1)

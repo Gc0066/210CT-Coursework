@@ -75,7 +75,9 @@ class List(object):
         print("List: ",",".join(values))
 
     def delete(self,deleteNode):
-        
+        '''takes input of an integer that correlates with a nodes value.
+        deletes the node. returns boolean which says whether node was in the
+        linked list and thus was deleted.'''
         nodeFound = False                                                   #(1)
         #sets the first node to be checked as the first node in the list
         searchNode = self.head                                              #(1)

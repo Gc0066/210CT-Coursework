@@ -1,8 +1,8 @@
 def IntegerCheck(x):
-    """This function will take a number input and check whether it is
+    '''This function will take a number input and check whether it is
     an integer or a float. Returning a boolean value of true if it is an
     integer and false if it is not.
-    """
+    '''
     #Makes a rounded down version of x.
     y = int(x)
     #calculates difference between the rounded down

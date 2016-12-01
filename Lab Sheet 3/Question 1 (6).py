@@ -3,6 +3,8 @@
 #them immediately.
 
 def reverseSentence(splitSentence, reversedString, i):                  #(1)
+    '''Takes input of a list of strings. An empty string and an integer which is
+    the length of the list. Reverses this list. Returns a concatenated string.'''
     ##from the end of the list to the beginning. Add the item at position i in the
     #list to the new string.
     while i >=0:                                                        #(n)
