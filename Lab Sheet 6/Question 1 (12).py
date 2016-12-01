@@ -37,6 +37,10 @@ def postorder(tree):
 def in_order(tree):
     '''takes input of the root node of the binary tree.
     Outputs the binary tree in order of value.'''
+
+    #implemented the pseudocode from the below website for the question.
+    #GeeksforGeeks (n.d) inorder tree traversal without recursion (online) available from
+    #<http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/>[16/11/2016]
     
     stack = []                                                                                          #(1)
     treeEmpty = False                                                                                   #(1)
